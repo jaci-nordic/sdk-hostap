@@ -69,12 +69,13 @@ jobs:
         -c origin/${BASE_REF}..
 
     - name: upload-results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       continue-on-error: true
       if: contains(github.event.pull_request.user.login, 'dependabot[bot]') != true
       with:
         name: compliance.xml
         path: sdk-hostap
+        overwrite: true
 
     - name: check-warns
       if: contains(github.event.pull_request.user.login, 'dependabot[bot]') != true
